@@ -4,7 +4,7 @@ services:
   api:
     build:
       context: .
-    image: zacadaaa/skypro_smalenko_app
+    image: edenerus/homework26
     ports:
       - 80:80
     volumes:
@@ -17,7 +17,7 @@ services:
   migrations:
     build:
       context: .
-    image: zacadaaa/skypro_smalenko_app
+    image: edenerus/homework26
     volumes:
       - ./docker_config.py:/code/default_config.py
     depends_on:
