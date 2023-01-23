@@ -1,5 +1,7 @@
 name: Build and deploy workflow
 on: [push]
+description:
+runs:
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
@@ -37,9 +39,9 @@ jobs:
           target: "flask_app_ci"
           strip_components: 1
       - name: deploy app
-        uses: appleboy/ssh-action@v0.1.7
+        uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOSTING }}
+          host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
