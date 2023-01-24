@@ -10,8 +10,8 @@ services:
     volumes:
       - ./docker_config.py:/code/default_config.py
     depends_on:
-     # pg:
-      #  condition: service_healthy
+      pg:
+        condition: service_healthy
       migrations:
         condition: service_completed_successfully
   migrations:
@@ -20,9 +20,9 @@ services:
     image: edenerus/homework26
     volumes:
       - ./docker_config.py:/code/default_config.py
-    #depends_on:
-      #pg:
-        #condition: service_healthy
+    depends_on:
+      pg:
+        condition: service_healthy
     command: flask db upgrade
 
   pg:
@@ -34,9 +34,9 @@ services:
       POSTGRES_DB: flask_app
     volumes:
       - ./pg_data:/var/lib/postgresql/data
-    #healthcheck:
-      #test: ["CMD-SHELL", "pg_isready -U postgres"]
-      #interval: 5s
-      #timeout: 5s
-      #retries: 5
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
